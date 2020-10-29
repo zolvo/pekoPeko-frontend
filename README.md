@@ -26,7 +26,7 @@
     * business web page
     * business phone
     * business get direction
-    * business full menus
+    * business full menu
 
 3. Business Register Page
     * ZIP code
