@@ -1,35 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
+import { createUser } from '../store/actions/user'
+import { useHistory, NavLink } from 'react-router-dom';
+import { setCurrent } from '../store/actions/current-user';
 
-function Signup() {
+function SignupForm(createUser) {
+  const history = useHistory();
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCurrent(null))
+  }, [])
+
+  useEffect(() => {
+    if (user)
+      return () => {
+        history.push('/');
+      }
+  }, [user])
+
   const [userZip, setUserZip] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [userEmail, setEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = new FormData();
+
+    data.append('userZip', userZip);
+    data.append('firstName', firstName);
+    data.append('lastName', lastName);
+    data.append('userEmail', userEmail);
+    data.append('password', password);
+
+    createUser(data).then((s) => {
+      console.log(s);
+    });
   };
 
-  const updateUserZip = (e) => {
-    setUserZip(e.target.value);
-  };
-  const updateFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-  const updateLastName = (e) => {
-    setLastName(e.target.value);
-  };
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const updateProperty = (callback) => (e) => {
+    callback(e.target.value);
+  }
 
   return (
     <Container>
@@ -39,19 +57,22 @@ function Signup() {
       <LoginFormWrapper>
         <form onSubmit={handleSubmit}>
           <div>
-            <input type='text' placeholder='ZIP code' value={userZip} onChange={updateUserZip} required />
+            <input type='text' placeholder='ZIP code' value={userZip} onChange={updateProperty(setUserZip)} required />
           </div>
           <div>
-            <input type='text' placeholder='first Name' value={firstName} onChange={updateFirstName} required />
+            <input type='text' placeholder='first Name' value={firstName} onChange={updateProperty(setFirstName)} required />
           </div>
           <div>
-            <input type='text' placeholder='last Name' value={lastName} onChange={updateLastName} required />
+            <input type='text' placeholder='last Name' value={lastName} onChange={updateProperty(setLastName)} required />
           </div>
           <div>
-            <input type='text' placeholder='email' value={userEmail} onChange={updateEmail} required />
+            <input type='text' placeholder='email' value={userEmail} onChange={updateProperty(setUserEmail)} required />
           </div>
           <div>
-            <input type='text' placeholder='password' value={password} onChange={updatePassword} required />
+            <input type='text' placeholder='password' value={password} onChange={updateProperty(setPassword)} required />
+          </div>
+          <div>
+            <input type='text' placeholder='confirm password' value={confirmPassword} onChange={updateProperty(setPassword)} required />
           </div>
           <div>
             <button type="submit">SignUp</button>
@@ -59,7 +80,9 @@ function Signup() {
           <Footer>
             <div>
               have an account?
-              <span>Login</span>
+              <NavLink exact to='/Login'>
+                <span>Login</span>
+              </NavLink>
             </div>
             <p>
               @2020 created by: PekoPeko.
@@ -96,9 +119,9 @@ flex-direction:column;
 align-items:center;
 justify-content: center;
 width: 500px;
-height: 500px;
+height: 550px;
 div{
-  margin-top:20px;
+  margin-top:18px;
   text-decoration: none;
 }
 input{
@@ -142,4 +165,12 @@ p{
 
 `;
 
-export default Signup;
+const SignupFormContainer = () => {
+  const dispatch = useDispatch();
+
+  return (
+    <SignupForm createUser={(user) => dispatch(createUser(user))} />
+  );
+};
+
+export default SignupFormContainer;

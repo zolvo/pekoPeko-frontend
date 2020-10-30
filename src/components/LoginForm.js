@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/actions/authentication';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import { Switch } from '@material-ui/core';
+import { Redirect, Switch, NavLink, useHistory } from 'react-router-dom';
 
 function Login() {
+
+  const history = useHistory();
+  const user = useSelector(state => state.user);
+  useEffect(() => {
+    if (user)
+      return () => {
+        history.push('/');
+      }
+  }, [user])
+
   const [email, setEmail] = useState('demo@1234.com');
   const [password, setPassword] = useState('1234');
   const dispatch = useDispatch();
@@ -23,6 +32,13 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  //   const ProtectedComponent = () => {
+  //     if (authFails)
+  //       return <Redirect to='/login' />
+  //   }
+  //   return <Redirect to='/' />
+  // }
+
   return (
     <Container>
       <LoginHeader>
@@ -37,12 +53,14 @@ function Login() {
             <input type='text' placeholder='password' value={password} onChange={updatePassword} required />
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit" onClick='loggin'>Login</button>
           </div>
           <Footer>
             <div>
               don't have any account?
-              <span>Signup</span>
+              <NavLink exact to='/signup'>
+                <span>Signup</span>
+              </NavLink>
             </div>
             <p>
               @2020 created by: PekoPeko.
@@ -79,10 +97,10 @@ flex-direction:column;
 align-items:center;
 justify-content: center;
 width: 500px;
-height: 500px;
+height: 550px;
 
 div{
-  margin-top:30px;
+  margin-bottom:30px;
   text-decoration: none;
 }
 
@@ -111,7 +129,7 @@ flex-direction:column;
 align-items:center;
 
 div{
-  margin-top: 50px;
+  margin-top: 30px;
 color: #292721;
 }
 
@@ -122,7 +140,6 @@ span {
 }
 
 p {
-  margin-top: 20px;
   font-size: 10px;
   color: #292721;
 }
