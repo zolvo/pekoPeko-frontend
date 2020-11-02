@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import test01 from '../../assets/test01.webp';
 import mixer from '../../assets/mixer.jpg';
 
-function Chinese() {
+function Thai() {
   return (
     <Container>
       <ImgContainer>
@@ -11,11 +11,11 @@ function Chinese() {
       </ImgContainer>
       <TextContainer>
         <Title>
-          Chinese
+          Thai
         </Title>
         <Subtitle>
           <h3>
-            MEET FRIED RICE, NOODLES, AND DUMPLINGS
+            QUALITY FOOD FROM THE EXOTIC PLACE
           </h3>
         </Subtitle>
         <Line>
@@ -23,10 +23,7 @@ function Chinese() {
         </Line>
         <Description>
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis ex vitae ipsum sagittis vehicula. Proin nec justo sed erat tempus iaculis. Praesent condimentum pretium velit nec cursus. Suspendisse quis ipsum euismod, laoreet odio non, lacinia erat. Maecenas sed mollis metus, sit amet dignissim ante.
-          <p>
-              Donec vehicula semper risus, a pretium quam sodales eget. Sed augue velit, eleifend eu ultricies a, tempus sed diam. Phasellus et elit quis odio placerat varius. Integer ex eros, ultricies tristique maximus id, bibendum in tortor.
-          </p>
+            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you.
           </div>
         </Description>
       </TextContainer>
@@ -120,5 +117,4 @@ div{
 `;
 
 
-
-export default Chinese
+export default Thai;

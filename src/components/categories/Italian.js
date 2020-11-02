@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import test01 from '../../assets/test01.webp';
+import mixer from '../../assets/mixer.jpg';
 
 function Italian() {
   return (
     <Container>
       <ImgContainer>
-        <img src={test01} />
+        <img src={mixer} />
       </ImgContainer>
       <TextContainer>
         <Title>
@@ -33,7 +34,6 @@ function Italian() {
 const Container = styled.div`
 display:flex;
 flex-direction: row;
-flex-wrap: wrap;
 align-items:center;
 justify-content: center;
 width:100%;
@@ -43,7 +43,7 @@ height:100%;
 
 const ImgContainer = styled.div`
 img{
-  height:600px;
+  height:335px;
   width:460px;
 }
 `;
@@ -55,6 +55,7 @@ justify-content: center;
 align-items:center;
 height:600px;
 width:680px;
+outset: none;
 `;
 
 const Title = styled.div`
@@ -114,7 +115,6 @@ div{
   font-weight: 200;
 }
 `;
-
 
 
 export default Italian;

@@ -1,9 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import Home from './Home';
-import bg from '../assets/bg.jpg'
-import Chinese from './categories/Chinese';
+import bg from '../assets/bg.jpg';
+import noodles from '../assets/noodles.png';
+import spagethi from '../assets/spagethi.jpg';
+import burger from '../assets/burger.png';
 
+
+import Chinese from './categories/Chinese';
+import Italian from './categories/Italian';
+import Thai from './categories/Thai';
+import Burger from './categories/Burger';
+import About from './About';
 
 function Category() {
   return (
@@ -16,48 +24,23 @@ function Category() {
       </SubContainer1>
       <SubContainer2 />
       <SubContainer1>
-        <Thai>
-          Thai
-        </Thai>
+        <Burger />
       </SubContainer1>
-      <SubContainer2 />
+      <SubContainer3 />
       <SubContainer1>
-        <Italy>
-          Italy
-        </Italy>
+        <Italian />
       </SubContainer1>
-      <SubContainer2>
-        <Mexican>
-          Mexican
-        </Mexican>
-      </SubContainer2>
+      <SubContainer4 />
       <SubContainer1>
-        <Japanese>
-          Japanese
-        </Japanese>
+        <Thai />
       </SubContainer1>
-      <SubContainer2>
-        <Burgers>
-          Burgers
-        </Burgers>
-      </SubContainer2>
-      <SubContainer1>
-        <Pizza>
-          Pizza
-        </Pizza>
-      </SubContainer1>
-      <SubContainer2>
-        <Sweets>
-          Sweets
-        </Sweets>
-      </SubContainer2>
-    </Container>
+      <About />
+    </Container >
   )
 }
 
 
 const Container = styled.div`
-background-image: url(${bg.jpg});
 `;
 
 const SubContainer = styled.div`
@@ -74,18 +57,29 @@ color: #000000;
 const SubContainer2 = styled.div`
 background-color:#D7CBBB;
 height: 608px;
-background-image: url(${bg});
+background-image: url(${noodles});
 background-position: center;
 background-size: cover;
 background-repeat: no-repeat;
 `;
 
-const Thai = styled.div`
+const SubContainer3 = styled.div`
+background-color:#D7CBBB;
+height: 608px;
+background-image: url(${burger});
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
 `;
 
-const Italy = styled.div`
+const SubContainer4 = styled.div`
+background-color:#D7CBBB;
+height: 608px;
+background-image: url(${spagethi});
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
 `;
-
 const Mexican = styled.div`
 `;
 

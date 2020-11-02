@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import test01 from '../../assets/test01.webp';
 import mixer from '../../assets/mixer.jpg';
 
-function Chinese() {
+function Burger() {
   return (
     <Container>
       <ImgContainer>
@@ -11,11 +11,11 @@ function Chinese() {
       </ImgContainer>
       <TextContainer>
         <Title>
-          Chinese
+          Burger
         </Title>
         <Subtitle>
           <h3>
-            MEET FRIED RICE, NOODLES, AND DUMPLINGS
+            WHEN THE MEAT AND THE BREAD COLLIDES
           </h3>
         </Subtitle>
         <Line>
@@ -121,4 +121,4 @@ div{
 
 
 
-export default Chinese
+export default Burger;
