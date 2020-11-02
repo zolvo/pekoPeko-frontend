@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Main from './Main';
+import bg from '../assets/bg.jpg';
+
 
 
 const Home = () => {
@@ -32,6 +33,16 @@ const Home = () => {
 }
 
 
+const Container = styled.div`
+top: 1em;
+background: #302D22;
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+flex-direction: column;
+margin-top:110px;
+`;
 
 const SearchWrapper = styled.span`
 display: flex;
@@ -54,17 +65,9 @@ border: 3px solid #CCA43D;
 background-color:#A2A09B;
 border-radius: 20px;
 padding: 0 2rem;
-font-size: 16px
-`;
+font-size: 16px;
 
-const Container = styled.div`
-top: 1em;
-background: #302D22;
-width: 100%;
-height: 100%;
-display: flex;
-align-items: center;
-flex-direction: column;
+background-image: url(${bg.jpg});
 `;
 
 const Word1 = styled.div`

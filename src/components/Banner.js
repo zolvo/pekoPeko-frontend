@@ -18,6 +18,9 @@ const Container = styled.div`
   justify-content: center;
   text-align: center;
   font-weight: 500;
+  position:fixed;
+  width: 100%;
+  z-index: 10;
 
   span {
     color: #20303C;

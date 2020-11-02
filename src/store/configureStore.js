@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import authentication from './reducers/authentication';
 // import pekopeko from '../reducers/pekopeko';
 

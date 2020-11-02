@@ -4,22 +4,25 @@ import styled from 'styled-components';
 import { createUser } from '../store/actions/user'
 import { useHistory, NavLink } from 'react-router-dom';
 import { setCurrent } from '../store/actions/current-user';
+import { signup } from '../store/actions/authentication';
 
-function SignupForm(createUser) {
-  const history = useHistory();
-  const user = useSelector(state => state.user);
-  const dispatch = useDispatch();
+// function SignupForm(signup) {
+//   const history = useHistory();
+//   const user = useSelector(state => state.user);
+//   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(setCurrent(null))
-  }, [])
+//   useEffect(() => {
+//     dispatch(setCurrent(null))
+//   }, [])
 
-  useEffect(() => {
-    if (user)
-      return () => {
-        history.push('/');
-      }
-  }, [user])
+//   useEffect(() => {
+//     if (user)
+//       return () => {
+//         history.push('/');
+//       }
+//   }, [user])
+
+const SignupForm = () => {
 
   const [userZip, setUserZip] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -28,26 +31,41 @@ function SignupForm(createUser) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // const dispatch = useDispatch();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-
-    data.append('userZip', userZip);
-    data.append('firstName', firstName);
-    data.append('lastName', lastName);
-    data.append('userEmail', userEmail);
-    data.append('password', password);
-
-    createUser(data).then((s) => {
-      console.log(s);
-    });
-  };
+  const dispatch = useDispatch();
 
   const updateProperty = (callback) => (e) => {
     callback(e.target.value);
-  }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // const data = new FormData();
+
+    //   data.append('userZip', userZip);
+    //   data.append('firstName', firstName);
+    //   data.append('lastName', lastName);
+    //   data.append('userEmail', userEmail);
+    //   data.append('password', password);
+    //   data.append('confirmPassword', confirmPassword);
+
+    //   signup(data).then((s) => {
+    //     console.log(s);
+    //   });
+    // };
+
+    const newUser = {
+      userZip,
+      firstName,
+      lastName,
+      userEmail,
+      password,
+      confirmPassword,
+    };
+
+    console.log('handleSubmit -> newUser ', newUser);
+    dispatch(signup(newUser));
+  };
+
 
   return (
     <Container>
@@ -72,7 +90,7 @@ function SignupForm(createUser) {
             <input type='text' placeholder='password' value={password} onChange={updateProperty(setPassword)} required />
           </div>
           <div>
-            <input type='text' placeholder='confirm password' value={confirmPassword} onChange={updateProperty(setPassword)} required />
+            <input type='text' placeholder='confirm password' value={confirmPassword} onChange={updateProperty(setConfirmPassword)} required />
           </div>
           <div>
             <button type="submit">SignUp</button>
@@ -120,7 +138,10 @@ align-items:center;
 justify-content: center;
 width: 500px;
 height: 550px;
+box-shadow:0px 14px 9px -15px rgba(0,0,0,0.25);
+
 div{
+  box-shadow:0px 14px 9px -15px rgba(0,0,0,0.25);
   margin-top:18px;
   text-decoration: none;
 }
@@ -131,7 +152,12 @@ input{
   height: 3em;
   padding-left: 1em;
   border-radius: 1em;
-}
+
+  transition: all 0.2x ease-in;
+  &:hover{
+  transform: translateY(-3px);
+  };
+};
 
 button{
   background-color: #EF9D55;
@@ -140,8 +166,13 @@ button{
   width: 18em;
   height: 3em;
   border-radius: 2em;
+  box-shadow:0px 14px 9px -15px rgba(0,0,0,0.25);
 
-  `;
+  transition: all 0.2x ease-in;
+  &:hover{
+  transform: translateY(-3px);
+  };
+`;
 
 const Footer = styled.div`
   display:flex;
@@ -165,12 +196,13 @@ p{
 
 `;
 
-const SignupFormContainer = () => {
-  const dispatch = useDispatch();
+// const SignupFormContainer = () => {
+//   const dispatch = useDispatch();
+//   return (
+//     <SignupForm createUser={(user) => dispatch(createUser(user))} />
+//   );
+// };
 
-  return (
-    <SignupForm createUser={(user) => dispatch(createUser(user))} />
-  );
-};
+// export default SignupFormContainer;
 
-export default SignupFormContainer;
+export default SignupForm;
